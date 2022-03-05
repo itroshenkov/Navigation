@@ -1,22 +1,3 @@
-//import UIKit
-//
-//class ProfileViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        view.backgroundColor = .lightGray
-//
-//        let profileHeaderView = ProfileHeaderView()
-//                self.view.addSubview(profileHeaderView)
-//            }
-//    override func viewWillLayoutSubviews() {
-//            self.view.subviews.first?.frame = self.view.frame
-//
-//        }
-//}
-
-
 
 import UIKit
 
@@ -30,7 +11,7 @@ class ProfileViewController: UIViewController {
         self.view.addSubview(header)
         header.addProfileViews()
         view.backgroundColor = .lightGray
-        self.hideKeyboardWhenTappedAround()
+        
         
     }
     
@@ -47,13 +28,5 @@ class ProfileViewController: UIViewController {
     }
 }
 
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
+
+

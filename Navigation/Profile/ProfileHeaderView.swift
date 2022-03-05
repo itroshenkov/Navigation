@@ -3,9 +3,9 @@ import UIKit
 
 class ProfileHeaderView: UIView, UITextFieldDelegate {
     
-    private var status: String = ""
+    var status: String = ""
     
-    private lazy var avatar: UIImageView = {
+    var avatar: UIImageView = {
         
         let avatar = UIImageView()
         
@@ -22,7 +22,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     }()
     
     
-    private lazy var nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         
         let nameLabel = UILabel()
         
@@ -37,7 +37,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     }()
     
     
-    private lazy var statusLabel: UILabel = {
+    var statusLabel: UILabel = {
         
         let statusLabel = UILabel()
         
@@ -52,7 +52,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
     }()
     
-    private lazy var statusTextField: UITextField = {
+    var statusTextField: UITextField = {
         
         let statusTextField = UITextField()
         
@@ -78,7 +78,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         statusTextField.isEnabled = true
         statusTextField.isUserInteractionEnabled = true
-        statusTextField.delegate = self
+        
         
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         
@@ -87,7 +87,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     }()
     
     
-    private lazy var showStatusButton: UIButton = {
+    var showStatusButton: UIButton = {
         
         let button = UIButton()
         
@@ -96,7 +96,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         button.setTitle("Show status", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         button.titleLabel?.textColor = UIColor.white
-        button.backgroundColor = .systemTeal
+        button.backgroundColor = .blue
         
         button.layer.cornerRadius = 4
         
@@ -112,7 +112,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     }()
     
     @objc func buttonPressed(sender: UIButton!) {
-        
+        print(statusTextField.text ?? "---")
         guard statusTextField.text?.isEmpty == false else {return}
         
         statusLabel.text = statusTextChanged(statusTextField)
@@ -146,7 +146,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     //     MARK: Constraints
     
-    private func setupConstraints() {
+    func setupConstraints() {
         
         NSLayoutConstraint.activate([
             
