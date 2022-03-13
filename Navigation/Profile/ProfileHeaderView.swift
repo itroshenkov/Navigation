@@ -1,7 +1,18 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView, UITextFieldDelegate {
+public extension UIView {
+
+    func toAutoLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
+}
+
+class ProfileHeaderView: UIView {
     
     var status: String = ""
     
@@ -9,8 +20,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         let avatar = UIImageView()
         
-        avatar.translatesAutoresizingMaskIntoConstraints = false
+       //avatar.translatesAutoresizingMaskIntoConstraints = false
         
+        avatar.toAutoLayout()
         avatar.clipsToBounds = true
         avatar.image = UIImage(named: "avatar")
         avatar.layer.cornerRadius = 50
@@ -26,8 +38,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         let nameLabel = UILabel()
         
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+       //nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        nameLabel.toAutoLayout()
         nameLabel.text = "Ilya Troshenkov"
         nameLabel.textColor = .black
         nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -41,8 +54,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         let statusLabel = UILabel()
         
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+       //statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        statusLabel.toAutoLayout()
         statusLabel.text = "Waiting for something..."
         statusLabel.numberOfLines = 2
         statusLabel.textColor = .darkGray
@@ -56,8 +70,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         let statusTextField = UITextField()
         
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+      // statusTextField.translatesAutoresizingMaskIntoConstraints = false
         
+        statusTextField.toAutoLayout()
         statusTextField.layer.cornerRadius = 12
         statusTextField.clipsToBounds = true
         statusTextField.layer.borderWidth = 1
@@ -91,8 +106,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         let button = UIButton()
         
-        button.translatesAutoresizingMaskIntoConstraints = false
+       //button.translatesAutoresizingMaskIntoConstraints = false
         
+        button.toAutoLayout()
         button.setTitle("Show status", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         button.titleLabel?.textColor = UIColor.white
