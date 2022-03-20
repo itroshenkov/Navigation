@@ -1,16 +1,6 @@
 
 import UIKit
 
-public extension UIView {
-
-    func toAutoLayout() {
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    func addSubviews(_ subviews: UIView...) {
-        subviews.forEach { addSubview($0) }
-    }
-}
 
 class ProfileHeaderView: UIView {
     
@@ -156,11 +146,9 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
         
-        setupConstraints()
+        //setupConstraints()
         
     }
-    
-    //     MARK: Constraints
     
     func setupConstraints() {
         

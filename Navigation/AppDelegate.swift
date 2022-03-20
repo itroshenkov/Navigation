@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appearance = UINavigationBarAppearance()
                 appearance.configureWithOpaqueBackground()
                 appearance.backgroundColor = UIColor.systemGray5
-        
+     
+  //Feed Контроллер
         
         let feedVc = FeedViewController()
         feedVc.title = "Feed"
@@ -24,17 +25,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedNavigationController.navigationBar.standardAppearance = appearance
         feedNavigationController.navigationBar.scrollEdgeAppearance = feedNavigationController.navigationBar.standardAppearance
         
+//Profile Контроллер
+        
         let profileVc = ProfileViewController()
         profileVc.title = "Profile"
         
-        let profileNavigationController = UINavigationController(rootViewController: profileVc)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 0)
+//        let profileNavigationController = UINavigationController(rootViewController: profileVc)
+//        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 0)
         
-        profileNavigationController.navigationBar.standardAppearance = appearance
-        profileNavigationController.navigationBar.scrollEdgeAppearance = profileNavigationController.navigationBar.standardAppearance
+//        profileNavigationController.navigationBar.standardAppearance = appearance
+//        profileNavigationController.navigationBar.scrollEdgeAppearance = profileNavigationController.navigationBar.standardAppearance
             
+// Login Контроллер
+        
+        let logInVc = LogInViewController()
+        let logInNavigationController = UINavigationController(rootViewController: logInVc)
+        logInNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 0)
+        
+        
+        logInNavigationController.navigationBar.standardAppearance = appearance
+        logInNavigationController.navigationBar.scrollEdgeAppearance = logInNavigationController.navigationBar.standardAppearance
+        
+        
+        
+ // Tabbar Контроллер
+        
         let tabBarController = UITabBarController()
-                tabBarController.viewControllers = [feedNavigationController,profileNavigationController]
+                tabBarController.viewControllers = [feedNavigationController,logInNavigationController]
                 tabBarController.tabBar.isHidden = false
         
         tabBarController.tabBar.backgroundColor = UIColor.systemGray5
