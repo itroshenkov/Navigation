@@ -2,10 +2,10 @@ import UIKit
 
 class PostViewController: UIViewController {
 
-    
+    var postTitle: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Post"
+        title = postTitle
         view.backgroundColor = .green
         
         let myButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tap1))
