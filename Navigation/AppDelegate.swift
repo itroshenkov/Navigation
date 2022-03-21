@@ -29,12 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let profileVc = ProfileViewController()
         profileVc.title = "Profile"
-        
-//        let profileNavigationController = UINavigationController(rootViewController: profileVc)
-//        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 0)
-        
-//        profileNavigationController.navigationBar.standardAppearance = appearance
-//        profileNavigationController.navigationBar.scrollEdgeAppearance = profileNavigationController.navigationBar.standardAppearance
             
 // Login Контроллер
         
@@ -45,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logInNavigationController.navigationBar.standardAppearance = appearance
         logInNavigationController.navigationBar.scrollEdgeAppearance = logInNavigationController.navigationBar.standardAppearance
-        
-        
         
  // Tabbar Контроллер
         

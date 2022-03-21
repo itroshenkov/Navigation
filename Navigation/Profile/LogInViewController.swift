@@ -7,32 +7,31 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
         scrollView.isScrollEnabled = true
-        scrollView.toAutoLayout()
+        scrollView.autoLayoutOn()
         return scrollView
     }()
     
     var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
-        contentView.toAutoLayout()
+        contentView.autoLayoutOn()
         return contentView
     }()
     
     var logoVK: UIImageView = {
         let logoVK = UIImageView()
         logoVK.image = UIImage(named: "Logo")
-        logoVK.toAutoLayout()
+        logoVK.autoLayoutOn()
         logoVK.contentMode = .scaleAspectFit
         return logoVK
     }()
     
     var userName: UITextField = {
         let userName = UITextField()
-        userName.toAutoLayout()
+        userName.autoLayoutOn()
         userName.textColor = .black
         userName.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         userName.tintColor = UIColor(named: "AccentColor")
-        //userName.autocapitalizationType = .none
         userName.layer.borderColor = UIColor.lightGray.cgColor
         userName.layer.borderWidth = 0.5
         userName.placeholder = "Почта или телефон"
@@ -45,7 +44,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     
     var password: UITextField = {
         let password = UITextField()
-        password.toAutoLayout()
+        password.autoLayoutOn()
         password.textColor = .black
         password.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         password.tintColor = UIColor(named: "AccentColor")
@@ -62,7 +61,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     
     var logInButton: UIButton = {
         let button = UIButton()
-        button.toAutoLayout()
+        button.autoLayoutOn()
         button.setTitle("Вход", for: .normal)
         button.titleLabel?.textColor = UIColor.white
         button.layer.cornerRadius = 10
@@ -74,7 +73,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     
     var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.toAutoLayout()
+        stackView.autoLayoutOn()
         stackView.axis = .vertical
         stackView.layer.borderColor = UIColor.systemGray6.cgColor
         stackView.layer.borderWidth = 0.5
@@ -140,7 +139,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
              contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
              contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
              contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-             contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+             //contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
              
              logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
              logoVK.widthAnchor.constraint(equalToConstant: 100),
@@ -154,8 +153,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
              
              logInButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
              logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Const.leading),
-             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailing),
-             logInButton.heightAnchor.constraint(equalToConstant: 50)]
+             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+             logInButton.heightAnchor.constraint(equalToConstant: 50),
+             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)]
             .forEach({$0.isActive = true})
     }
     

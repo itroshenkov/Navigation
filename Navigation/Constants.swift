@@ -11,13 +11,11 @@ struct Const {
 
 public extension UIView {
 
-    func toAutoLayout() {
+    func autoLayoutOn() {
         translatesAutoresizingMaskIntoConstraints = false
     }
 
-
-
-func addSubviews(_ subviews: UIView...) {
+    func addSubviews(_ subviews: UIView...) {
     subviews.forEach { addSubview($0) }
-}
+    }
 }
