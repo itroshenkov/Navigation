@@ -1,16 +1,6 @@
 
 import UIKit
 
-public extension UIView {
-
-    func toAutoLayout() {
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    func addSubviews(_ subviews: UIView...) {
-        subviews.forEach { addSubview($0) }
-    }
-}
 
 class ProfileHeaderView: UIView {
     
@@ -22,7 +12,7 @@ class ProfileHeaderView: UIView {
         
        //avatar.translatesAutoresizingMaskIntoConstraints = false
         
-        avatar.toAutoLayout()
+        avatar.autoLayoutOn()
         avatar.clipsToBounds = true
         avatar.image = UIImage(named: "avatar")
         avatar.layer.cornerRadius = 50
@@ -40,7 +30,7 @@ class ProfileHeaderView: UIView {
         
        //nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.toAutoLayout()
+        nameLabel.autoLayoutOn()
         nameLabel.text = "Ilya Troshenkov"
         nameLabel.textColor = .black
         nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -56,7 +46,7 @@ class ProfileHeaderView: UIView {
         
        //statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        statusLabel.toAutoLayout()
+        statusLabel.autoLayoutOn()
         statusLabel.text = "Waiting for something..."
         statusLabel.numberOfLines = 2
         statusLabel.textColor = .darkGray
@@ -72,7 +62,7 @@ class ProfileHeaderView: UIView {
         
       // statusTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        statusTextField.toAutoLayout()
+        statusTextField.autoLayoutOn()
         statusTextField.layer.cornerRadius = 12
         statusTextField.clipsToBounds = true
         statusTextField.layer.borderWidth = 1
@@ -108,7 +98,7 @@ class ProfileHeaderView: UIView {
         
        //button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.toAutoLayout()
+        button.autoLayoutOn()
         button.setTitle("Show status", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         button.titleLabel?.textColor = UIColor.white
@@ -149,18 +139,9 @@ class ProfileHeaderView: UIView {
     
     
     func addProfileViews () {
-        
-        self.addSubview(avatar)
-        self.addSubview(nameLabel)
-        self.addSubview(showStatusButton)
-        self.addSubview(statusLabel)
-        self.addSubview(statusTextField)
-        
+        addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
         setupConstraints()
-        
     }
-    
-    //     MARK: Constraints
     
     func setupConstraints() {
         
