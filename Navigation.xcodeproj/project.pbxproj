@@ -19,6 +19,7 @@
 		F030D57727E3C6ED00F34A81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030D57627E3C6ED00F34A81 /* Constants.swift */; };
 		F058BE6927CFFCDB00D5148E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F058BE6827CFFCDB00D5148E /* ProfileHeaderView.swift */; };
 		F07148EC27DE649D00C022B5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07148EB27DE649D00C022B5 /* Post.swift */; };
+		F0CCA39B27EF44D300A32D8E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F030D57627E3C6ED00F34A81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F058BE6827CFFCDB00D5148E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F07148EB27DE649D00C022B5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				F02940D627CD4CA900804FEC /* ProfileViewController.swift */,
 				F058BE6827CFFCDB00D5148E /* ProfileHeaderView.swift */,
 				F030D57427E380EA00F34A81 /* LogInViewController.swift */,
+				F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0CCA39B27EF44D300A32D8E /* PostTableViewCell.swift in Sources */,
 				F02940D727CD4CA900804FEC /* ProfileViewController.swift in Sources */,
 				F0243C9F27CD402A007E99BA /* ViewController.swift in Sources */,
 				F030D57527E380EA00F34A81 /* LogInViewController.swift in Sources */,
