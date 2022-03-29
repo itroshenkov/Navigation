@@ -49,15 +49,12 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
-            
             contentView.addSubviews(postTitle, postImage, postDescription, postLikes, postViews)
-            useConstraint()
-        }
+            setupConstraints()
+    }
     
-    
-    func useConstraint(){
-        [
-            
+    func setupConstraints(){
+         NSLayoutConstraint.activate([
          postTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
          postTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leading),
          postTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailing),
@@ -78,12 +75,12 @@ class PostTableViewCell: UITableViewCell {
          postViews.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: Const.indent),
          postViews.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailing),
          postLikes.heightAnchor.constraint(equalToConstant: Const.indent)
-        ] .forEach { $0.isActive = true }
+         ])
     }
     
     required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    fatalError("init(coder:) has not been implemented")
+    }
     
     public func configSetsell(post: Post) {
         postTitle.text = post.title
@@ -91,9 +88,5 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = post.description
         postLikes.text = "Лайк: \(post.likes)"
         postViews.text = "Просмотры: \(post.views)"
-        }
-    
-    
-    
-    
+    }
 }

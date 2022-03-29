@@ -108,11 +108,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             super.init(reuseIdentifier: reuseIdentifier)
             contentView.addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
             setupConstraints()
-    
-    
-//    func addProfileViews () {
-//        addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
-//        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -120,7 +115,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
+    NSLayoutConstraint.activate([
             
             avatar.widthAnchor.constraint(equalToConstant: 100),
             avatar.heightAnchor.constraint(equalToConstant: 100),

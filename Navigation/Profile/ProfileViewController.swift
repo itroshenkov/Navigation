@@ -29,15 +29,16 @@ class ProfileViewController: UIViewController {
             postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
             
             view.addSubview(postTable)
-            useConstraint()
+            setupConstraints()
     }
         
-      func useConstraint(){
-          [postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      func setupConstraints(){
+           NSLayoutConstraint.activate([
+           postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
            postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
            postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-           postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)]
-           .forEach({$0.isActive = true})
+           postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+           ])
       }
         
      @objc func freshArrayPosts() {
