@@ -1,8 +1,17 @@
-//
-//  PhotosCollectionViewCell.swift
-//  Navigation
-//
-//  Created by itroshenkov on 29.03.2022.
-//
 
-import Foundation
+
+import UIKit
+
+class PhotosCollectionViewCell: UICollectionViewCell{
+    
+
+
+    static let identifire = "PhotosColectionCell"
+
+
+
+
+
+
+
+}
