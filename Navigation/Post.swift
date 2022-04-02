@@ -38,7 +38,7 @@ let post4 = Post(title: "Вечеринка длиною в жизнь. Элто
 
 
 let arrayPosts = [post1, post2, post3, post4]
-
+let photoCollectionArray = ["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10","pic11","pic12","pic13","pic14","pic15","pic16","pic17","pic18","pic19","pic20"]
 
 
 

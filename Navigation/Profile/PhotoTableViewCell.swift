@@ -14,6 +14,18 @@ class PhotoTableViewCell: UITableViewCell {
     photosLabel.textColor = .black
     return photosLabel
     }()
+    
+    let stackView: UIStackView = {
+            let stackView = UIStackView()
+            stackView.autoLayoutOn()
+            stackView.axis = .horizontal
+            stackView.spacing = 8
+            stackView.alignment = .center
+            stackView.distribution = .fillEqually
+            stackView.backgroundColor = .white
+            return stackView
+        }()
+    
 
     let arrowButton: UIImageView = {
         let arrowButton = UIImageView()
@@ -25,8 +37,16 @@ class PhotoTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
-            contentView.addSubviews(photosLabel,arrowButton)
+            contentView.addSubviews(photosLabel,arrowButton,stackView)
             setupConstraints()
+        for i in 0...3 {
+                    let photo = UIImageView(image: UIImage(named: photoCollectionArray[i]))
+                    photo.autoLayoutOn()
+                    photo.layer.cornerRadius = 6
+                    photo.clipsToBounds = true
+            photo.contentMode = .scaleAspectFill
+                    stackView.addArrangedSubview(photo)
+        }
     }
     
         func setupConstraints(){
@@ -39,9 +59,18 @@ class PhotoTableViewCell: UITableViewCell {
              arrowButton.heightAnchor.constraint(equalToConstant: 30),
              arrowButton.widthAnchor.constraint(equalToConstant: 30),
              
-             
+             stackView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
+             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
              ])
+            
+            stackView.arrangedSubviews.forEach({
+            [$0.widthAnchor.constraint(greaterThanOrEqualToConstant: (stackView.frame.width - 16) / 4),
+             $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
+            })
         }
+                        
     required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
     }
