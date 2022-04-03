@@ -20,7 +20,7 @@ class PhotoTableViewCell: UITableViewCell {
             stackView.autoLayoutOn()
             stackView.axis = .horizontal
             stackView.spacing = 8
-            stackView.alignment = .center
+            stackView.alignment = .fill
             stackView.distribution = .fillEqually
             stackView.backgroundColor = .white
             return stackView
@@ -44,10 +44,12 @@ class PhotoTableViewCell: UITableViewCell {
                     photo.autoLayoutOn()
                     photo.layer.cornerRadius = 6
                     photo.clipsToBounds = true
-            photo.contentMode = .scaleAspectFill
+                    photo.contentMode = .scaleAspectFill
                     stackView.addArrangedSubview(photo)
         }
     }
+    
+    
     
         func setupConstraints(){
              NSLayoutConstraint.activate([
@@ -59,16 +61,18 @@ class PhotoTableViewCell: UITableViewCell {
              arrowButton.heightAnchor.constraint(equalToConstant: 30),
              arrowButton.widthAnchor.constraint(equalToConstant: 30),
              
+             stackView.heightAnchor.constraint(equalToConstant: 100),
              stackView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
              stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
              stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
              stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
              ])
             
-            stackView.arrangedSubviews.forEach({
-            [$0.widthAnchor.constraint(greaterThanOrEqualToConstant: (stackView.frame.width - 16) / 4),
-             $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
-            })
+//            код не выставляет констрейнты
+//            stackView.arrangedSubviews.forEach({
+//            [$0.widthAnchor.constraint(lessThanOrEqualToConstant: (contentView.frame.width - 16) / 4),
+//            $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
+//            })
         }
                         
     required init?(coder: NSCoder) {
