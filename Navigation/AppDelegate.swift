@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 tabBarController.viewControllers = [feedNavigationController,logInNavigationController]
                 tabBarController.tabBar.isHidden = false
         
-        tabBarController.tabBar.backgroundColor = UIColor.systemGray5
+        tabBarController.tabBar.backgroundColor = UIColor.systemGray
         
                 window?.rootViewController = tabBarController
                 window?.makeKeyAndVisible()

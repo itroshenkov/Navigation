@@ -1,7 +1,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-        let post = Post(title: "Post")
+        let post = "Post"
         let stackView: UIStackView
     
         init (){
@@ -16,7 +16,7 @@ class FeedViewController: UIViewController {
     @objc func tap () {
             let postVc = PostViewController()
             navigationController?.pushViewController(postVc, animated: true)
-            postVc.postTitle = post.title
+            postVc.postTitle = post
         }
     
     
