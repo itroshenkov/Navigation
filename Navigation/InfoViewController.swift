@@ -1,10 +1,10 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .gray
         
         let buttonAlert = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
@@ -29,7 +29,7 @@ class InfoViewController: UIViewController {
         
         self.present(alertVc, animated: true, completion: nil)
         
-    
+        
     }
 }
 

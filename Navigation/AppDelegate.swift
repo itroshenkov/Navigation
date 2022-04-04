@@ -2,19 +2,19 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
         
         
         let appearance = UINavigationBarAppearance()
-                appearance.configureWithOpaqueBackground()
-                appearance.backgroundColor = UIColor.systemGray5
-     
-  //Feed Контроллер
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.systemGray5
+        
+        //Feed Контроллер
         
         let feedVc = FeedViewController()
         feedVc.title = "Feed"
@@ -25,12 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedNavigationController.navigationBar.standardAppearance = appearance
         feedNavigationController.navigationBar.scrollEdgeAppearance = feedNavigationController.navigationBar.standardAppearance
         
-//Profile Контроллер
+        //Profile Контроллер
         
         let profileVc = ProfileViewController()
         profileVc.title = "Profile"
-            
-// Login Контроллер
+        
+        // Login Контроллер
         
         let logInVc = LogInViewController()
         let logInNavigationController = UINavigationController(rootViewController: logInVc)
@@ -40,16 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         logInNavigationController.navigationBar.standardAppearance = appearance
         logInNavigationController.navigationBar.scrollEdgeAppearance = logInNavigationController.navigationBar.standardAppearance
         
- // Tabbar Контроллер
+        // Tabbar Контроллер
         
         let tabBarController = UITabBarController()
-                tabBarController.viewControllers = [feedNavigationController,logInNavigationController]
-                tabBarController.tabBar.isHidden = false
+        tabBarController.viewControllers = [feedNavigationController,logInNavigationController]
+        tabBarController.tabBar.isHidden = false
         
         tabBarController.tabBar.backgroundColor = UIColor.systemGray
         
-                window?.rootViewController = tabBarController
-                window?.makeKeyAndVisible()
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
         
         return true
     }
