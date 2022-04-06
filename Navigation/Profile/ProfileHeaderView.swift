@@ -9,7 +9,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var status: String = ""
     
-    var avatar: UIImageView = {
+   lazy var avatar: UIImageView = {
         let avatar = UIImageView()
         avatar.autoLayoutOn()
         avatar.clipsToBounds = true
@@ -17,7 +17,32 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = UIColor.white.cgColor
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.openAnimationAvatar))
+        avatar.addGestureRecognizer(recognizer)
+        avatar.isUserInteractionEnabled = true
         return avatar
+    }()
+    
+    private var startAvatarPosicion: CGPoint?
+    
+    lazy var backView: UIView = {
+        let backView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        backView.autoLayoutOn()
+        backView.backgroundColor = .darkGray
+        backView.isHidden = true
+        backView.alpha = 0
+        return backView
+    }()
+    
+    var closeAvatarButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.isHidden = true
+        closeButton.autoLayoutOn()
+        closeButton.imageView?.contentMode = .scaleAspectFit
+        closeButton.backgroundColor = .darkGray
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.addTarget(self, action: #selector(closeAnimationAvatar), for: .touchUpInside)
+        return closeButton
     }()
     
     var nameLabel: UILabel = {
@@ -104,11 +129,65 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return status
     }
     
+    @objc func openAnimationAvatar() {
+            UIImageView.animate(
+                withDuration: 0.5,
+                animations: {
+                    self.startAvatarPosicion = self.avatar.center
+                    self.avatar.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+                    self.avatar.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatar.frame.width,
+                                                              y: self.contentView.frame.width / self.avatar.frame.width)
+                    self.avatar.layer.cornerRadius = 0
+                    self.backView.isHidden = false
+                    self.backView.alpha = 0.7
+                    self.avatar.isUserInteractionEnabled = false
+                    ProfileViewController.postTable.isScrollEnabled = false
+                },
+                completion: { _ in
+                    UIImageView.animate(withDuration: 0.3) {
+                        self.closeAvatarButton.isHidden = false
+                        self.closeAvatarButton.alpha = 1
+                    }
+                })
+        }
+    
+    
+    @objc func closeAnimationAvatar() {
+            UIImageView.animate(
+                withDuration: 0.3,
+                animations: {
+                    self.closeAvatarButton.alpha = 0
+                    self.closeAvatarButton.isHidden = true
+                    
+                },
+                completion: { _ in
+                    UIImageView.animate(withDuration: 0.5,
+                                        animations: {
+                        self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
+                        self.avatar.center = self.startAvatarPosicion!
+                        self.backView.alpha = 0.0
+                        self.avatar.isUserInteractionEnabled = true
+                        ProfileViewController.postTable.isScrollEnabled = true
+                    },
+                                        completion: { _ in
+                        self.backView.isHidden = true
+                    })
+                })
+            
+        }
+    
+    
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
+        contentView.addSubviews(nameLabel,showStatusButton,statusLabel,statusTextField, backView, closeAvatarButton, avatar)
         setupConstraints()
     }
+    
+    
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
