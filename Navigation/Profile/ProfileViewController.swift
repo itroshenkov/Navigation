@@ -3,7 +3,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var postTable: UITableView = {
+    static var postTable: UITableView = {
         let postTable = UITableView(frame: .zero, style: .grouped)
         postTable.autoLayoutOn()
         postTable.refreshControl = UIRefreshControl()
@@ -17,34 +17,34 @@ class ProfileViewController: UIViewController {
     }()
     
     var tablePosts = arrayPosts
-
+    
     override func viewDidLoad (){
-            super.viewDidLoad()
+        super.viewDidLoad()
         view.backgroundColor = .white
-            
-            postTable.dataSource = self
-            postTable.delegate = self
-            
-            postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
-            postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
-            postTable.register(PhotoTableViewCell.self, forCellReuseIdentifier: PhotoTableViewCell.identifire)
         
-            view.addSubview(postTable)
-            setupConstraints()
+        ProfileViewController.postTable.dataSource = self
+        ProfileViewController.postTable.delegate = self
+        
+        ProfileViewController.postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
+        ProfileViewController.postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
+        ProfileViewController.postTable.register(PhotoTableViewCell.self, forCellReuseIdentifier: PhotoTableViewCell.identifire)
+        
+        view.addSubview(ProfileViewController.postTable)
+        setupConstraints()
     }
         
-      func setupConstraints(){
-           NSLayoutConstraint.activate([
-           postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-           postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-           postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-           postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-           ])
-      }
-        
-     @objc func freshArrayPosts() {
-            postTable.reloadData()
-            postTable.refreshControl?.endRefreshing()
+    func setupConstraints(){
+        NSLayoutConstraint.activate([
+            ProfileViewController.postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            ProfileViewController.postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            ProfileViewController.postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            ProfileViewController.postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    @objc func freshArrayPosts() {
+        ProfileViewController.postTable.reloadData()
+        ProfileViewController.postTable.refreshControl?.endRefreshing()
     }
 
 

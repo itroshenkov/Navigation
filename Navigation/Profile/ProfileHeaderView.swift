@@ -26,12 +26,12 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     private var startAvatarPosicion: CGPoint?
     
     lazy var backView: UIView = {
-        let backView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        backView.autoLayoutOn()
-        backView.backgroundColor = .darkGray
-        backView.isHidden = true
-        backView.alpha = 0
-        return backView
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        view.autoLayoutOn()
+        view.backgroundColor = .darkGray
+        view.isHidden = true
+        view.alpha = 0
+        return view
     }()
     
     var closeAvatarButton: UIButton = {
@@ -130,26 +130,26 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func openAnimationAvatar() {
-            UIImageView.animate(
-                withDuration: 0.5,
-                animations: {
-                    self.startAvatarPosicion = self.avatar.center
-                    self.avatar.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
-                    self.avatar.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatar.frame.width,
-                                                              y: self.contentView.frame.width / self.avatar.frame.width)
-                    self.avatar.layer.cornerRadius = 0
-                    self.backView.isHidden = false
-                    self.backView.alpha = 0.7
-                    self.avatar.isUserInteractionEnabled = false
-                    ProfileViewController.postTable.isScrollEnabled = false
-                },
-                completion: { _ in
-                    UIImageView.animate(withDuration: 0.3) {
-                        self.closeAvatarButton.isHidden = false
-                        self.closeAvatarButton.alpha = 1
-                    }
-                })
-        }
+        UIImageView.animate(
+            withDuration: 0.5,
+            animations: {
+                self.startAvatarPosicion = self.avatar.center
+                self.avatar.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+                self.avatar.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatar.frame.width,
+                                                          y: self.contentView.frame.width / self.avatar.frame.width)
+                self.avatar.layer.cornerRadius = 0
+                self.backView.isHidden = false
+                self.backView.alpha = 0.7
+                self.avatar.isUserInteractionEnabled = false
+                ProfileViewController.postTable.isScrollEnabled = false
+            },
+            completion: { _ in
+                UIImageView.animate(withDuration: 0.3) {
+                    self.closeAvatarButton.isHidden = false
+                    self.closeAvatarButton.alpha = 1
+                }
+            })
+    }
     
     
     @objc func closeAnimationAvatar() {
