@@ -9,83 +9,108 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var status: String = ""
     
-    var avatar: UIImageView = {
-    let avatar = UIImageView()
-    avatar.autoLayoutOn()
-    avatar.clipsToBounds = true
-    avatar.image = UIImage(named: "avatar")
-    avatar.layer.cornerRadius = 50
-    avatar.layer.borderWidth = 3
-    avatar.layer.borderColor = UIColor.white.cgColor
-    return avatar
+   lazy var avatar: UIImageView = {
+        let avatar = UIImageView()
+        avatar.autoLayoutOn()
+        avatar.clipsToBounds = true
+        avatar.image = UIImage(named: "avatar")
+        avatar.layer.cornerRadius = 50
+        avatar.layer.borderWidth = 3
+        avatar.layer.borderColor = UIColor.white.cgColor
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.openAnimationAvatar))
+        avatar.addGestureRecognizer(recognizer)
+        avatar.isUserInteractionEnabled = true
+        return avatar
+    }()
+    
+    private var startAvatarPosicion: CGPoint?
+    
+    lazy var backView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        view.autoLayoutOn()
+        view.backgroundColor = .darkGray
+        view.isHidden = true
+        view.alpha = 0
+        return view
+    }()
+    
+    var closeAvatarButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.isHidden = true
+        closeButton.autoLayoutOn()
+        closeButton.imageView?.contentMode = .scaleAspectFit
+        closeButton.backgroundColor = .darkGray
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.addTarget(self, action: #selector(closeAnimationAvatar), for: .touchUpInside)
+        return closeButton
     }()
     
     var nameLabel: UILabel = {
-    let nameLabel = UILabel()
-    nameLabel.autoLayoutOn()
-    nameLabel.text = "Ilya Troshenkov"
-    nameLabel.textColor = .black
-    nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-    return nameLabel
+        let nameLabel = UILabel()
+        nameLabel.autoLayoutOn()
+        nameLabel.text = "Ilya Troshenkov"
+        nameLabel.textColor = .black
+        nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return nameLabel
     }()
     
     var statusLabel: UILabel = {
-    let statusLabel = UILabel()
-    statusLabel.autoLayoutOn()
-    statusLabel.text = "Waiting for something..."
-    statusLabel.numberOfLines = 2
-    statusLabel.textColor = .darkGray
-    statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    return statusLabel
+        let statusLabel = UILabel()
+        statusLabel.autoLayoutOn()
+        statusLabel.text = "Waiting for something..."
+        statusLabel.numberOfLines = 2
+        statusLabel.textColor = .darkGray
+        statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        return statusLabel
     }()
     
     var statusTextField: UITextField = {
-    let statusTextField = UITextField()
-    statusTextField.autoLayoutOn()
-    statusTextField.layer.cornerRadius = 12
-    statusTextField.clipsToBounds = true
-    statusTextField.layer.borderWidth = 1
-    statusTextField.layer.borderColor = UIColor.black.cgColor
-    statusTextField.backgroundColor = .white
-    
-    statusTextField.placeholder = "Enter your status..."
-    
-    statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-    statusTextField.textColor = .black
-    statusTextField.textAlignment = .center
-    
-    statusTextField.autocorrectionType = UITextAutocorrectionType.no
-    statusTextField.keyboardType = UIKeyboardType.default
-    statusTextField.returnKeyType = UIReturnKeyType.done
-    statusTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-    statusTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-    
-    statusTextField.isEnabled = true
-    statusTextField.isUserInteractionEnabled = true
+        let statusTextField = UITextField()
+        statusTextField.autoLayoutOn()
+        statusTextField.layer.cornerRadius = 12
+        statusTextField.clipsToBounds = true
+        statusTextField.layer.borderWidth = 1
+        statusTextField.layer.borderColor = UIColor.black.cgColor
+        statusTextField.backgroundColor = .white
         
-    statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-    return statusTextField
+        statusTextField.placeholder = "Enter your status..."
+        
+        statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        statusTextField.textColor = .black
+        statusTextField.textAlignment = .center
+        
+        statusTextField.autocorrectionType = UITextAutocorrectionType.no
+        statusTextField.keyboardType = UIKeyboardType.default
+        statusTextField.returnKeyType = UIReturnKeyType.done
+        statusTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        statusTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        
+        statusTextField.isEnabled = true
+        statusTextField.isUserInteractionEnabled = true
+        
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        return statusTextField
     }()
     
     
     var showStatusButton: UIButton = {
-    let button = UIButton()
+        let button = UIButton()
         
-    button.autoLayoutOn()
-    button.setTitle("Show status", for: .normal)
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    button.titleLabel?.textColor = UIColor.white
-    button.backgroundColor = .blue
-    
-    button.layer.cornerRadius = 4
-    
-    button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-    button.layer.shadowRadius = 4.0
-    button.layer.shadowColor = UIColor.black.cgColor
-    button.layer.shadowOpacity = 0.7
-    
-    button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-    return button
+        button.autoLayoutOn()
+        button.setTitle("Show status", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.textColor = UIColor.white
+        button.backgroundColor = .blue
+        
+        button.layer.cornerRadius = 4
+        
+        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
     }()
     
     @objc func buttonPressed(sender: UIButton!) {
@@ -99,25 +124,74 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc func statusTextChanged(_ textField: UITextField) -> String {
         if let newStatus = textField.text {
-        status = newStatus
+            status = newStatus
         }
         return status
     }
     
-    override init(reuseIdentifier: String?) {
-            super.init(reuseIdentifier: reuseIdentifier)
-            contentView.addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
-            setupConstraints()
-    
-    
-//    func addProfileViews () {
-//        addSubviews(avatar,nameLabel,showStatusButton,statusLabel,statusTextField)
-//        setupConstraints()
+    @objc func openAnimationAvatar() {
+        UIImageView.animate(
+            withDuration: 0.5,
+            animations: {
+                self.startAvatarPosicion = self.avatar.center
+                self.avatar.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+                self.avatar.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatar.frame.width,
+                                                          y: self.contentView.frame.width / self.avatar.frame.width)
+                self.avatar.layer.cornerRadius = 0
+                self.backView.isHidden = false
+                self.backView.alpha = 0.7
+                self.avatar.isUserInteractionEnabled = false
+                ProfileViewController.postTable.isScrollEnabled = false
+            },
+            completion: { _ in
+                UIImageView.animate(withDuration: 0.3) {
+                    self.closeAvatarButton.isHidden = false
+                    self.closeAvatarButton.alpha = 1
+                }
+            })
     }
     
-    required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+    
+    @objc func closeAnimationAvatar() {
+            UIImageView.animate(
+                withDuration: 0.3,
+                animations: {
+                    self.closeAvatarButton.alpha = 0
+                    self.closeAvatarButton.isHidden = true
+                    
+                },
+                completion: { _ in
+                    UIImageView.animate(withDuration: 0.5,
+                                        animations: {
+                        self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
+                        self.avatar.center = self.startAvatarPosicion!
+                        self.backView.alpha = 0.0
+                        self.avatar.isUserInteractionEnabled = true
+                        ProfileViewController.postTable.isScrollEnabled = true
+                    },
+                                        completion: { _ in
+                        self.backView.isHidden = true
+                    })
+                })
+            
         }
+    
+    
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        contentView.addSubviews(nameLabel,showStatusButton,statusLabel,statusTextField, backView, closeAvatarButton, avatar)
+        setupConstraints()
+    }
+    
+    
+    
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([

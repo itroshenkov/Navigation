@@ -96,7 +96,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         stackView.addArrangedSubview(password)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
-        useConstraint()
+        setupConstraints()
     
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
@@ -124,12 +124,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     }
     
     
-    
-    
-    
-    
-    private func useConstraint() {
-            [scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+    func setupConstraints() {
+    NSLayoutConstraint.activate([ 
+             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
              scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
              scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
              scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -139,7 +136,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
              contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
              contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
              contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-             //contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
              
              logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
              logoVK.widthAnchor.constraint(equalToConstant: 100),
@@ -155,8 +151,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
              logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Const.leading),
              logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
              logInButton.heightAnchor.constraint(equalToConstant: 50),
-             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)]
-            .forEach({$0.isActive = true})
+             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
     
     @objc func tap() {

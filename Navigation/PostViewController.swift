@@ -1,7 +1,7 @@
 import UIKit
 
 class PostViewController: UIViewController {
-
+    
     var postTitle: String?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,5 +16,5 @@ class PostViewController: UIViewController {
         let infoVc = InfoViewController()
         self.present(infoVc, animated: true, completion: nil)
     }
-
+    
 }

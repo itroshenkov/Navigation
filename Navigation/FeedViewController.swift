@@ -1,23 +1,23 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-        let post = "Post"
-        let stackView: UIStackView
+    let post = "Post"
+    let stackView: UIStackView
     
-        init (){
-            stackView = UIStackView()
-            super.init(nibName: nil, bundle: nil)
-        }
+    init (){
+        stackView = UIStackView()
+        super.init(nibName: nil, bundle: nil)
+    }
     
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     @objc func tap () {
-            let postVc = PostViewController()
-            navigationController?.pushViewController(postVc, animated: true)
-            postVc.postTitle = post
-        }
+        let postVc = PostViewController()
+        navigationController?.pushViewController(postVc, animated: true)
+        postVc.postTitle = post
+    }
     
     
     override func viewDidLoad() {
