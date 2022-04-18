@@ -2,6 +2,7 @@
 
 import Foundation
 
+
 public struct Post {
     
     public var title:String
@@ -14,9 +15,10 @@ public struct Post {
 
  let post1 = Post(title: "Отдых в горах",
                  description: "В этом году в Красной поляне выпала много снега",
-                 image: "post1",
+                  image: "post1",
                  views: 1,
                  likes: 1)
+
 
 public let post2 = Post(title: "Миллиарды",
                  description: "Сериал подписали на 7 сезон. Вернется ли Акс? Узнаем в новом сезоне",
