@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Profile Контроллер
         
-        let profileVc = ProfileViewController()
+        let profileVc = ProfileViewController(userService: TestUserService() as UserService, nameUser: "testname")
         profileVc.title = "Profile"
         
         // Login Контроллер
