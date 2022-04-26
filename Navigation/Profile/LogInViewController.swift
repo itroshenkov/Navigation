@@ -104,12 +104,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         self.scrollView.keyboardDismissMode = .onDrag
         
         
-//#if release
-//        userName.text = ""
-//#elseif DEBUG
-//        userName.text = "Трошенков Илья"
-//#endif
-        
     }
     
     @objc
@@ -168,9 +162,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func login() {
-        
-        var userService: UserService
-        
+     
+       var userService: UserService
+
 #if release
         userService = CurrentUserService()
 #elseif DEBUG
@@ -180,7 +174,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         navigationController?.setViewControllers([profileViewController], animated: true)
     }
     
-    //            navigationController?.pushViewController(ProfileViewController(), animated: true)
+    
 }
 
 
