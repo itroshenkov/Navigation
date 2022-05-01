@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
+        let inspector = MyLoginFactory.shared.loginFactory()
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -27,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Profile Контроллер
         
-        let profileVc = ProfileViewController(userService: TestUserService() as UserService, nameUser: "testname")
+        let profileVc = ProfileViewController(userService: TestUserService() as UserService, name: "testname")
         profileVc.title = "Profile"
         
         // Login Контроллер
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let logInVc = LogInViewController()
         let logInNavigationController = UINavigationController(rootViewController: logInVc)
         logInNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 0)
-        
+        logInVc.delegate = inspector
         
         logInNavigationController.navigationBar.standardAppearance = appearance
         logInNavigationController.navigationBar.scrollEdgeAppearance = logInNavigationController.navigationBar.standardAppearance
