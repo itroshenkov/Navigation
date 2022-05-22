@@ -1,6 +1,7 @@
 
 
 import UIKit
+import iOSIntPackage
 
 class PhotosCollectionViewCell: UICollectionViewCell{
     
@@ -31,8 +32,8 @@ class PhotosCollectionViewCell: UICollectionViewCell{
                                     ])
     }
     
-    func setupImage(_ name: String) {
-        photo.image = UIImage(named: name)
+    func setupImage(_ image: UIImage) {
+        photo.image = image
     }
     
 }

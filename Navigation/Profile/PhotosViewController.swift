@@ -1,8 +1,12 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+import iOSIntPackage
+
+class PhotosViewController: UIViewController{
     
+   let facade = ImagePublisherFacade()
+
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -18,6 +22,16 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
     
+   
+    var contentPhotoData: [UIImage] = [] {
+            didSet {
+                if contentPhotoData.count == photoCollectionArray.count {
+                    facade.removeSubscription(for: self)
+                }
+            }
+        }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photo Gallery"
@@ -25,7 +39,10 @@ class PhotosViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifire)
         setupConstraints()
+        facade.subscribe(self)
+        facade.addImagesWithTimer(time: 0.5, repeat: photoCollectionArray.count*10, userImages:photoCollectionArray)
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -50,13 +67,13 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photoCollectionArray.count
+        contentPhotoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell() }
-        cell.setupImage(photoCollectionArray[indexPath.item])
+      cell.setupImage(contentPhotoData[indexPath.item])
         return cell
         
     }
@@ -65,4 +82,23 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         CGSize(width: (collectionView.frame.width - 40) / 3, height: (collectionView.frame.width - 40) / 3)
     }
 }
+    
+    extension PhotosViewController: ImageLibrarySubscriber {
+        
+        func receive(images: [UIImage]) {
+            
+            images.forEach({ image in
+                if contentPhotoData.contains(where: {image == $0}) {
+                   return
+                }
+                else {
+                    contentPhotoData.append(image)
+                }
+            })
+            collectionView.reloadData()
+            
+        }
+    
+}
+
 

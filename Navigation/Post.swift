@@ -1,6 +1,7 @@
 
 
 import Foundation
+import UIKit
 
 struct Post {
     
@@ -38,7 +39,8 @@ let post4 = Post(title: "Вечеринка длиною в жизнь. Элто
 
 
 let arrayPosts = [post1, post2, post3, post4]
-let photoCollectionArray = ["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10","pic11","pic12","pic13","pic14","pic15","pic16","pic17","pic18","pic19","pic20"]
 
+//let photoCollectionArray = ["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10","pic11","pic12","pic13","pic14","pic15","pic16","pic17","pic18","pic19","pic20"]
 
+let photoCollectionArray = [UIImage(named: "pic1")!, UIImage(named: "pic2")!, UIImage(named: "pic3")!, UIImage(named: "pic4")!, UIImage(named: "pic5")!, UIImage(named: "pic6")!, UIImage(named: "pic7")!, UIImage(named: "pic9")!, UIImage(named: "pic10")!, UIImage(named: "pic11")!, UIImage(named: "pic12")!, UIImage(named: "pic13")!, UIImage(named: "pic14")!,UIImage(named: "pic15")!, UIImage(named: "pic16")!, UIImage(named: "pic16")!, UIImage(named: "pic17")!, UIImage(named: "pic18")!, UIImage(named: "pic19")!, UIImage(named: "pic20")! ]
 
