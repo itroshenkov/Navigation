@@ -30,6 +30,8 @@
 		F0A29E8C2805F6DC003A7A8F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07148EB27DE649D00C022B5 /* Post.swift */; };
 		F0CCA39B27EF44D300A32D8E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */; };
 		F0E589AE27F48AF100687133 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E589AD27F48AF100687133 /* PhotosViewController.swift */; };
+		F0F929A8281EABF0005EA871 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F929A7281EABF0005EA871 /* Checker.swift */; };
+		F0F929AA281EAD08005EA871 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F929A9281EAD08005EA871 /* Factory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		F0A29E812805F24A003A7A8F /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F0E589AD27F48AF100687133 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		F0F929A7281EABF0005EA871 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		F0F929A9281EAD08005EA871 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,8 @@
 				F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */,
 				F07C879C27F35A5A003564E5 /* PhotosCollectionViewCell.swift */,
 				F0E589AD27F48AF100687133 /* PhotosViewController.swift */,
+				F0F929A7281EABF0005EA871 /* Checker.swift */,
+				F0F929A9281EAD08005EA871 /* Factory.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -356,8 +362,10 @@
 				F038E45C280F3B74007E4AC4 /* User.swift in Sources */,
 				F02940D927CD4CE100804FEC /* InfoViewController.swift in Sources */,
 				F058BE6927CFFCDB00D5148E /* ProfileHeaderView.swift in Sources */,
+				F0F929AA281EAD08005EA871 /* Factory.swift in Sources */,
 				F07C879F27F36788003564E5 /* PhotoTableViewCell.swift in Sources */,
 				F0E589AE27F48AF100687133 /* PhotosViewController.swift in Sources */,
+				F0F929A8281EABF0005EA871 /* Checker.swift in Sources */,
 				F0243C9B27CD402A007E99BA /* AppDelegate.swift in Sources */,
 				F02940D527CD4C7500804FEC /* PostViewController.swift in Sources */,
 			);

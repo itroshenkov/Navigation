@@ -3,7 +3,16 @@ import UIKit
 import StorageService
 
 
+protocol LoginViewControllerDelegate {
+    func checkerprotocol (login: String, psw: String) -> Bool
+}
+
 class LogInViewController: UIViewController, UITextFieldDelegate{
+    
+    private var isLogin = false
+    
+    var delegate: LoginViewControllerDelegate!
+    
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -163,19 +172,30 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func login() {
-     
-       var userService: UserService
-
+        
+        var userService: UserService
+        
 #if release
         userService = CurrentUserService()
 #elseif DEBUG
         userService = TestUserService()
 #endif
-        let profileViewController = ProfileViewController(userService: userService, nameUser: userName.text ?? "")
-        navigationController?.setViewControllers([profileViewController], animated: true)
+        
+        let profileVC = ProfileViewController(userService: userService, name: userName.text!)
+        
+        if delegate?.checkerprotocol(login: userName.text!, psw: password.text!) == true {
+            isLogin = true
+            navigationController?.pushViewController(profileVC, animated: true)
+            navigationController?.setViewControllers([profileVC], animated: true)
+        } else {
+            print ("Ошибка авторизации")
+            
+            
+            //        let profileViewController = ProfileViewController(userService: userService, nameUser: userName.text ?? "")
+            //        navigationController?.setViewControllers([profileViewController], animated: true)
+            
+            
+            
+        }
     }
-    
-    
 }
-
-

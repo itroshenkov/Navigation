@@ -7,9 +7,9 @@ class ProfileViewController: UIViewController {
     
     var userService: UserService?
     var nameUser: String
-    init(userService: UserService, nameUser: String){
+    init(userService: UserService, name: String){
         self.userService = userService
-        self.nameUser = nameUser
+        self.nameUser = name
         super.init(nibName: nil, bundle: nil)
     }
     
