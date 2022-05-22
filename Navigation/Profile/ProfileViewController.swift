@@ -3,6 +3,20 @@ import UIKit
 import StorageService
 class ProfileViewController: UIViewController {
     
+    // ДЗ №3
+    
+    var userService: UserService?
+    var nameUser: String
+    init(userService: UserService, nameUser: String){
+        self.userService = userService
+        self.nameUser = nameUser
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    
     static var postTable: UITableView = {
         let postTable = UITableView(frame: .zero, style: .grouped)
         postTable.autoLayoutOn()

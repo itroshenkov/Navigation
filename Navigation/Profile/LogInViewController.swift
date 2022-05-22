@@ -98,70 +98,84 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
         setupConstraints()
-    
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
         notificationCenter.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         self.scrollView.keyboardDismissMode = .onDrag
-            }
+        
+        
+    }
     
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                scrollView.contentInset.bottom = keyboardFrame.height
-                scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+            scrollView.contentInset.bottom = keyboardFrame.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         }
     }
-        
+    
     @objc
     func keyboardWillHide(notification: NSNotification) {
-            scrollView.contentInset.bottom = .zero
-            scrollView.verticalScrollIndicatorInsets = .zero
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
-            NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
-            NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
     
     
     func setupConstraints() {
-    NSLayoutConstraint.activate([ 
-             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-             
-             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-             
-             logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-             logoVK.widthAnchor.constraint(equalToConstant: 100),
-             logoVK.heightAnchor.constraint(equalToConstant: 100),
-             logoVK.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             
-             stackView.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 120),
-             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leading),
-             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailing),
-             stackView.heightAnchor.constraint(equalToConstant: 100),
-             
-             logInButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
-             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Const.leading),
-             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-             logInButton.heightAnchor.constraint(equalToConstant: 50),
-             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
+            logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoVK.widthAnchor.constraint(equalToConstant: 100),
+            logoVK.heightAnchor.constraint(equalToConstant: 100),
+            logoVK.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 120),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leading),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailing),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
+            
+            logInButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
+            logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Const.leading),
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
     
     @objc func tap() {
-            password.resignFirstResponder()
-            userName.resignFirstResponder()
-        }
+        password.resignFirstResponder()
+        userName.resignFirstResponder()
+    }
+    
+    @objc func login() {
+     
+       var userService: UserService
 
-        @objc func login() {
-            navigationController?.pushViewController(ProfileViewController(), animated: true)
-        }
+#if release
+        userService = CurrentUserService()
+#elseif DEBUG
+        userService = TestUserService()
+#endif
+        let profileViewController = ProfileViewController(userService: userService, nameUser: userName.text ?? "")
+        navigationController?.setViewControllers([profileViewController], animated: true)
+    }
+    
     
 }
+
+
