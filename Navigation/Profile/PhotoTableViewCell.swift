@@ -1,13 +1,14 @@
 import UIKit
 import iOSIntPackage
+import StorageService
+
 
 class PhotoTableViewCell: UITableViewCell {
+        static let identifire = "PhotoTableViewCell"
     
-    static let identifire = "PhotoTableViewCell"
+        let imageProcessor = ImageProcessor()
     
-    let imageProcessor = ImageProcessor()
-    
-    var photosLabel: UILabel = {
+        var photosLabel: UILabel = {
         let photosLabel = UILabel()
         photosLabel.autoLayoutOn()
         photosLabel.numberOfLines = 1

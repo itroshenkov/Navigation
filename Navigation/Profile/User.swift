@@ -14,7 +14,7 @@ protocol UserService {
 
 class CurrentUserService: UserService {
     
-    let user: User? = nil
+    var user: User? = nil
     
     func userIdentifire(nameUser: String) -> User? {
         if let activUser = user{
@@ -37,8 +37,8 @@ class TestUserService: UserService {
     func userIdentifire(nameUser: String) -> User? {
         if  nameUser == user.nameUser{ return user}
         return nil
-            
-        }
+        
     }
-    
+}
+
 
