@@ -1,11 +1,14 @@
 import UIKit
+import iOSIntPackage
 import StorageService
 
+
 class PhotoTableViewCell: UITableViewCell {
+        static let identifire = "PhotoTableViewCell"
     
-    static let identifire = "PhotoTableViewCell"
+        let imageProcessor = ImageProcessor()
     
-    var photosLabel: UILabel = {
+        var photosLabel: UILabel = {
         let photosLabel = UILabel()
         photosLabel.autoLayoutOn()
         photosLabel.numberOfLines = 1
@@ -40,7 +43,7 @@ class PhotoTableViewCell: UITableViewCell {
         contentView.addSubviews(photosLabel,arrowButton,stackView)
         setupConstraints()
         for i in 0...3 {
-            let photo = UIImageView(image: UIImage(named: photoCollectionArray[i]))
+            let photo = UIImageView(image: photoCollectionArray[i])
             photo.autoLayoutOn()
             photo.layer.cornerRadius = 6
             photo.clipsToBounds = true
