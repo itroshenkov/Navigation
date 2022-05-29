@@ -75,8 +75,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
             backColor: UIColor.white,
             backImage: UIImage(named: "blue_pixel") ?? UIImage()
         )
-        button.alpha = 0.5
-        button.isEnabled = false
+        button.autoLayoutOn()
         return button
     }()
     
@@ -115,7 +114,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         logInButton.tapAction = { [weak self] in
             guard let self = self else { return }
             self.buttonPressed()
-                }
+        }
     }
     
     @objc
@@ -175,15 +174,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     
     private func buttonPressed() {
         
-        var userService: UserService
-        
-#if release
-        userService = CurrentUserService()
-#elseif DEBUG
-        userService = TestUserService()
-#endif
-        
-        let profileVC = ProfileViewController(userService: userService, name: userName.text!)
+        //        #if DEBUG
+        let currentUserService = TestUserService()
+        //        #else
+        //        let currentUserService = CurrentUserService()
+        //        #endif
+        let profileVC = ProfileViewController(userService: currentUserService, name: userName.text!)
         
         if delegate?.checkerprotocol(login: userName.text!, psw: password.text!) == true {
             isLogin = true
@@ -192,12 +188,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         } else {
             print ("Ошибка авторизации")
             
-            
-            //        let profileViewController = ProfileViewController(userService: userService, nameUser: userName.text ?? "")
-            //        navigationController?.setViewControllers([profileViewController], animated: true)
-            
-            
-            
         }
     }
 }
+
