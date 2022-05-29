@@ -68,15 +68,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         return password
     }()
     
-    var logInButton: UIButton = {
-        let button = UIButton()
-        button.autoLayoutOn()
-        button.setTitle("Вход", for: .normal)
-        button.titleLabel?.textColor = UIColor.white
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.addTarget(self, action: #selector(login), for: .touchUpInside)
+    var logInButton: CustomButton = {
+        let button = CustomButton (
+            title: "Log in",
+            titleColor: UIColor.white,
+            backColor: UIColor.white,
+            backImage: UIImage(named: "blue_pixel") ?? UIImage()
+        )
+        button.alpha = 0.5
+        button.isEnabled = false
         return button
     }()
     
@@ -112,7 +112,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         notificationCenter.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         self.scrollView.keyboardDismissMode = .onDrag
         
-        
+        logInButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.buttonPressed()
+                }
     }
     
     @objc
@@ -170,7 +173,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         userName.resignFirstResponder()
     }
     
-    @objc func login() {
+    private func buttonPressed() {
         
         var userService: UserService
         
