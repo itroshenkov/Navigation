@@ -9,7 +9,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var status: String = ""
     
-   lazy var avatar: UIImageView = {
+    lazy var avatar: UIImageView = {
         let avatar = UIImageView()
         avatar.autoLayoutOn()
         avatar.clipsToBounds = true
@@ -153,29 +153,29 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     
     @objc func closeAnimationAvatar() {
-            UIImageView.animate(
-                withDuration: 0.3,
-                animations: {
-                    self.closeAvatarButton.alpha = 0
-                    self.closeAvatarButton.isHidden = true
-                    
+        UIImageView.animate(
+            withDuration: 0.3,
+            animations: {
+                self.closeAvatarButton.alpha = 0
+                self.closeAvatarButton.isHidden = true
+                
+            },
+            completion: { _ in
+                UIImageView.animate(withDuration: 0.5,
+                                    animations: {
+                    self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
+                    self.avatar.center = self.startAvatarPosicion!
+                    self.backView.alpha = 0.0
+                    self.avatar.isUserInteractionEnabled = true
+                    ProfileViewController.postTable.isScrollEnabled = true
                 },
-                completion: { _ in
-                    UIImageView.animate(withDuration: 0.5,
-                                        animations: {
-                        self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
-                        self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
-                        self.avatar.center = self.startAvatarPosicion!
-                        self.backView.alpha = 0.0
-                        self.avatar.isUserInteractionEnabled = true
-                        ProfileViewController.postTable.isScrollEnabled = true
-                    },
-                                        completion: { _ in
-                        self.backView.isHidden = true
-                    })
+                                    completion: { _ in
+                    self.backView.isHidden = true
                 })
-            
-        }
+            })
+        
+    }
     
     
     
