@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01E8843284545E60092CD7C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E8842284545E60092CD7C /* Model.swift */; };
 		F0243C9B27CD402A007E99BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0243C9A27CD402A007E99BA /* AppDelegate.swift */; };
 		F0243C9F27CD402A007E99BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0243C9E27CD402A007E99BA /* ViewController.swift */; };
 		F0243CA427CD402A007E99BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0243CA327CD402A007E99BA /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F01E8842284545E60092CD7C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F0243C9727CD402A007E99BA /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0243C9A27CD402A007E99BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0243C9E27CD402A007E99BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				F058BE6727CFFC6000D5148E /* Profile */,
 				F0243C9A27CD402A007E99BA /* AppDelegate.swift */,
 				F02940D227CD4C4500804FEC /* FeedViewController.swift */,
+				F01E8842284545E60092CD7C /* Model.swift */,
 				F07148EB27DE649D00C022B5 /* Post.swift */,
 				F02940D427CD4C7500804FEC /* PostViewController.swift */,
 				F02940D827CD4CE100804FEC /* InfoViewController.swift */,
@@ -211,6 +214,7 @@
 				F07C879F27F36788003564E5 /* PhotoTableViewCell.swift in Sources */,
 				F0E589AE27F48AF100687133 /* PhotosViewController.swift in Sources */,
 				F0F929A8281EABF0005EA871 /* Checker.swift in Sources */,
+				F01E8843284545E60092CD7C /* Model.swift in Sources */,
 				F0243C9B27CD402A007E99BA /* AppDelegate.swift in Sources */,
 				F02940D527CD4C7500804FEC /* PostViewController.swift in Sources */,
 			);
