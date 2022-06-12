@@ -31,6 +31,12 @@ class PhotosViewController: UIViewController{
         }
     }
     
+    //Задание №8
+    
+    var timeCount = 0.0
+    var timer: Timer? = nil
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photo Gallery"
@@ -40,7 +46,40 @@ class PhotosViewController: UIViewController{
         setupConstraints()
         facade.subscribe(self)
         facade.addImagesWithTimer(time: 0.5, repeat: photoCollectionArray.count*10, userImages:photoCollectionArray)
+        
+        //Звдание №8
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImagesOnThread(sourceImages: photoCollectionArray, filter: .fade, qos: .default){cgImages in
+            let images = cgImages.map({UIImage(cgImage: $0!)})
+            self.contentPhotoData.removeAll()
+            images.forEach({self.contentPhotoData.append($0)})
+            DispatchQueue.main.async{
+                self.collectionView.reloadData()
+        
+            }
+        }
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
+    
+    
+    /*
+             .Background - 0.47 сек
+             .utility - 0.45 сек
+             .default - 0.45 сек
+             
+    */
+    
+    
+    //Задание №8
+    @objc func updateTimer() {
+            timeCount += 0.01
+            if contentPhotoData.count > 0 {
+                print("Потрачено \(self.timeCount) секунд")
+                timer!.invalidate()
+            }
+        }
+    
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
