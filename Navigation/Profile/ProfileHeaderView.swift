@@ -9,7 +9,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var status: String = ""
     
-   lazy var avatar: UIImageView = {
+    lazy var avatar: UIImageView = {
         let avatar = UIImageView()
         avatar.autoLayoutOn()
         avatar.clipsToBounds = true
@@ -92,35 +92,23 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusTextField
     }()
     
-    
-    var showStatusButton: UIButton = {
-        let button = UIButton()
-        
+    var showStatusButton: CustomButton = {
+        let button = CustomButton (
+            title: "Show status",
+            titleColor: UIColor.white,
+            backColor: UIColor.blue,
+            backImage: UIImage(named: "blue_pixel")!
+        )
         button.autoLayoutOn()
-        button.setTitle("Show status", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        button.titleLabel?.textColor = UIColor.white
-        button.backgroundColor = .blue
-        
-        button.layer.cornerRadius = 4
-        
-        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-        button.layer.shadowRadius = 4.0
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
-    @objc func buttonPressed(sender: UIButton!) {
-        print(statusTextField.text ?? "---")
+    
+    private func showStatusbuttonPressed() {
         guard statusTextField.text?.isEmpty == false else {return}
-        
         statusLabel.text = statusTextChanged(statusTextField)
         self.statusTextField.text = ""
     }
-    
     
     @objc func statusTextChanged(_ textField: UITextField) -> String {
         if let newStatus = textField.text {
@@ -153,29 +141,29 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     
     @objc func closeAnimationAvatar() {
-            UIImageView.animate(
-                withDuration: 0.3,
-                animations: {
-                    self.closeAvatarButton.alpha = 0
-                    self.closeAvatarButton.isHidden = true
-                    
+        UIImageView.animate(
+            withDuration: 0.3,
+            animations: {
+                self.closeAvatarButton.alpha = 0
+                self.closeAvatarButton.isHidden = true
+                
+            },
+            completion: { _ in
+                UIImageView.animate(withDuration: 0.5,
+                                    animations: {
+                    self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
+                    self.avatar.center = self.startAvatarPosicion!
+                    self.backView.alpha = 0.0
+                    self.avatar.isUserInteractionEnabled = true
+                    ProfileViewController.postTable.isScrollEnabled = true
                 },
-                completion: { _ in
-                    UIImageView.animate(withDuration: 0.5,
-                                        animations: {
-                        self.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
-                        self.avatar.layer.cornerRadius = self.avatar.frame.width / 2
-                        self.avatar.center = self.startAvatarPosicion!
-                        self.backView.alpha = 0.0
-                        self.avatar.isUserInteractionEnabled = true
-                        ProfileViewController.postTable.isScrollEnabled = true
-                    },
-                                        completion: { _ in
-                        self.backView.isHidden = true
-                    })
+                                    completion: { _ in
+                    self.backView.isHidden = true
                 })
-            
-        }
+            })
+        
+    }
     
     
     
@@ -183,6 +171,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(nameLabel,showStatusButton,statusLabel,statusTextField, backView, closeAvatarButton, avatar)
         setupConstraints()
+        
+        showStatusButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.showStatusbuttonPressed()
+        }
+        
+        
     }
     
     
