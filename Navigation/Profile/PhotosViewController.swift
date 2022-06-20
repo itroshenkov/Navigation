@@ -6,8 +6,10 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController{
     
-   let facade = ImagePublisherFacade()
-
+    let facade = ImagePublisherFacade()
+    
+    let facade = ImagePublisherFacade()
+    
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -23,15 +25,27 @@ class PhotosViewController: UIViewController{
         return collectionView
     }()
     
-   
+    
     var contentPhotoData: [UIImage] = [] {
-            didSet {
-                if contentPhotoData.count == photoCollectionArray.count {
-                    facade.removeSubscription(for: self)
-                }
+        didSet {
+            if contentPhotoData.count == photoCollectionArray.count {
+                facade.removeSubscription(for: self)
             }
         }
+    }
     
+    //Задание №8
+    
+    var timeCount = 0.0
+    var timer: Timer? = nil
+    
+    var contentPhotoData: [UIImage] = [] {
+        didSet {
+            if contentPhotoData.count == photoCollectionArray.count {
+                facade.removeSubscription(for: self)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,27 +56,57 @@ class PhotosViewController: UIViewController{
         setupConstraints()
         facade.subscribe(self)
         facade.addImagesWithTimer(time: 0.5, repeat: photoCollectionArray.count*10, userImages:photoCollectionArray)
+        
+        //Звдание №8
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImagesOnThread(sourceImages: photoCollectionArray, filter: .fade, qos: .default){cgImages in
+            let images = cgImages.map({UIImage(cgImage: $0!)})
+            self.contentPhotoData.removeAll()
+            images.forEach({self.contentPhotoData.append($0)})
+            DispatchQueue.main.async{
+                self.collectionView.reloadData()
+                
+            }
+        }
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+    /*
+     .Background - 0.47 сек
+     .utility - 0.45 сек
+     .default - 0.45 сек
+     
+     */
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
+    //Задание №8
+    @objc func updateTimer() {
+        timeCount += 0.01
+        if contentPhotoData.count > 0 {
+            print("Потрачено \(self.timeCount) секунд")
+            timer!.invalidate()
+        }
     }
-    
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
+}
+
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: animated)
+}
+
+override func viewWillAppear(_ animated: Bool) {
+    navigationController?.navigationBar.isHidden = false
+}
+
+func setupConstraints() {
+    NSLayoutConstraint.activate([
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    ])
+}
 }
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -74,7 +118,8 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell() }
-      cell.setupImage(contentPhotoData[indexPath.item])
+        cell.setupImage(contentPhotoData[indexPath.item])
+        cell.setupImage(contentPhotoData[indexPath.item])
         return cell
         
     }
@@ -83,23 +128,39 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         CGSize(width: (collectionView.frame.width - 40) / 3, height: (collectionView.frame.width - 40) / 3)
     }
 }
+
+extension PhotosViewController: ImageLibrarySubscriber {
     
-    extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
         
-        func receive(images: [UIImage]) {
-            
-            images.forEach({ image in
-                if contentPhotoData.contains(where: {image == $0}) {
-                   return
-                }
-                else {
-                    contentPhotoData.append(image)
-                }
-            })
-            collectionView.reloadData()
-            
-        }
-    
+        images.forEach({ image in
+            if contentPhotoData.contains(where: {image == $0}) {
+                return
+            }
+            else {
+                contentPhotoData.append(image)
+            }
+        })
+        collectionView.reloadData()
+        
+    }
 }
 
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        
+        images.forEach({ image in
+            if contentPhotoData.contains(where: {image == $0}) {
+                return
+            }
+            else {
+                contentPhotoData.append(image)
+            }
+        })
+        collectionView.reloadData()
+        
+    }
+    
+}
 

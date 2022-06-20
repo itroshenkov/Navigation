@@ -2,7 +2,6 @@
 import UIKit
 import StorageService
 
-
 protocol LoginViewControllerDelegate {
     func checkerprotocol (login: String, psw: String) -> Bool
 }
@@ -69,15 +68,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         return password
     }()
     
-    var logInButton: UIButton = {
-        let button = UIButton()
+    var logInButton: CustomButton = {
+        let button = CustomButton (
+            title: "Log in",
+            titleColor: UIColor.white,
+            backColor: UIColor.white,
+            backImage: UIImage(named: "blue_pixel") ?? UIImage()
+        )
         button.autoLayoutOn()
-        button.setTitle("Вход", for: .normal)
-        button.titleLabel?.textColor = UIColor.white
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.addTarget(self, action: #selector(login), for: .touchUpInside)
         return button
     }()
     
@@ -113,7 +111,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         notificationCenter.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         self.scrollView.keyboardDismissMode = .onDrag
         
-        
+        logInButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.buttonPressed()
+        }
     }
     
     @objc
@@ -134,7 +135,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
-    
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -171,17 +171,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         userName.resignFirstResponder()
     }
     
-    @objc func login() {
+    private func buttonPressed() {
         
-        var userService: UserService
-        
-#if release
-        userService = CurrentUserService()
-#elseif DEBUG
-        userService = TestUserService()
-#endif
-        
-        let profileVC = ProfileViewController(userService: userService, name: userName.text!)
+        //        #if DEBUG
+        let currentUserService = TestUserService()
+        //        #else
+        //        let currentUserService = CurrentUserService()
+        //        #endif
+        let profileVC = ProfileViewController(userService: currentUserService, name: userName.text!)
         
         if delegate?.checkerprotocol(login: userName.text!, psw: password.text!) == true {
             isLogin = true
@@ -190,12 +187,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         } else {
             print ("Ошибка авторизации")
             
-            
-            //        let profileViewController = ProfileViewController(userService: userService, nameUser: userName.text ?? "")
-            //        navigationController?.setViewControllers([profileViewController], animated: true)
-            
-            
-            
         }
     }
 }
+

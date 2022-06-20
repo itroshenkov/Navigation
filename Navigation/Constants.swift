@@ -19,3 +19,8 @@ public extension UIView {
     subviews.forEach { addSubview($0) }
     }
 }
+
+public extension NSNotification.Name {
+    static let codeRed = NSNotification.Name("codeRed")
+    static let codeGreen = NSNotification.Name("codeGreen")
+}
