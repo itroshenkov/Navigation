@@ -1,5 +1,6 @@
 
 import UIKit
+import StorageService
 
 protocol LoginViewControllerDelegate {
     func checkerprotocol (login: String, psw: String) -> Bool

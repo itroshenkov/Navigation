@@ -1,6 +1,6 @@
 
 import UIKit
-
+import StorageService
 class ProfileViewController: UIViewController {
     
     // ДЗ №3
@@ -34,7 +34,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad (){
         super.viewDidLoad()
+        
         view.backgroundColor = .white
+        
+        #if DEBUG
+        view.backgroundColor = .green
+        #endif
+        
         
         ProfileViewController.postTable.dataSource = self
         ProfileViewController.postTable.delegate = self
