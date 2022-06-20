@@ -108,7 +108,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
             indicator.autoLayoutOn()
-            //indicator.isHidden = false
             return indicator
         }()
     
@@ -235,7 +234,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         let hack = BrutForce()
         var psw: String = ""
 
-       // let indicator = UIActivityIndicatorView(style: .medium)
         password.placeholder = "hacking..."
         indicator.isHidden = false
         indicator.startAnimating()
