@@ -6,7 +6,7 @@ import Foundation
 final class Checker{
     static let shared = Checker()
     private let login = "Ilya"
-    private let psw = "Qwerty"
+    private let psw = "1234"
     
     private init() {}
     

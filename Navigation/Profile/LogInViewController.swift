@@ -88,9 +88,30 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         stackView.layer.cornerRadius = 10
         stackView.distribution = .fillProportionally
         stackView.backgroundColor = .systemGray6
-        stackView.clipsToBounds = true
+        stackView.clipsToBounds = false
         return stackView
     }()
+    
+   
+        var hackButton: CustomButton = {
+            let button = CustomButton(
+                title: "Подбор пароля",
+                titleColor: UIColor.white,
+                backColor: UIColor.white,
+                backImage: UIImage(named: "blue_pixel") ?? UIImage()
+            )
+            button.autoLayoutOn()
+            return button
+        }()
+    
+    
+    var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+            indicator.autoLayoutOn()
+            //indicator.isHidden = false
+            return indicator
+        }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +120,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         self.navigationController?.navigationBar.isHidden = true
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: max(view.frame.width, view.frame.height))
-        contentView.addSubviews(logoVK, stackView, logInButton)
+        contentView.addSubviews(logoVK, stackView, logInButton, hackButton, indicator)
         stackView.addArrangedSubview(userName)
         stackView.addArrangedSubview(password)
         scrollView.addSubview(contentView)
@@ -115,6 +136,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
             guard let self = self else { return }
             self.buttonPressed()
         }
+        
+        hackButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.hackPassword()
+        }
+        
     }
     
     @objc
@@ -163,7 +190,20 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Const.leading),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        
+            hackButton.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 15),
+            hackButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            hackButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            hackButton.heightAnchor.constraint(equalToConstant: 25),
+        
+            indicator.topAnchor.constraint(equalTo: hackButton.bottomAnchor, constant: 5),
+            indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//            indicator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
+//            indicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
+//            indicator.heightAnchor.constraint(equalToConstant: 30)
+        
+        ])
     }
     
     @objc func tap() {
@@ -189,5 +229,30 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
             
         }
     }
+    
+    private func hackPassword() {
+        let hack = BrutForce()
+        var psw: String = ""
+
+       // let indicator = UIActivityIndicatorView(style: .medium)
+        password.placeholder = "hacking..."
+        indicator.isHidden = false
+        indicator.startAnimating()
+        DispatchQueue.global().async {
+            psw = hack.bruteForce(passwordToUnlock: "1234")
+
+            DispatchQueue.main.sync {
+                self.password.text = psw
+                self.password.isSecureTextEntry = false
+                self.password.placeholder = "Пароль"
+                self.indicator.stopAnimating()
+
+
+
+            }
+        }
+        
+    }
+    
 }
 
