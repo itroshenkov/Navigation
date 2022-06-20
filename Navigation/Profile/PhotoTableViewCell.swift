@@ -2,7 +2,6 @@ import UIKit
 import iOSIntPackage
 import StorageService
 
-
 class PhotoTableViewCell: UITableViewCell {
     static let identifire = "PhotoTableViewCell"
     
@@ -29,14 +28,12 @@ class PhotoTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    
     let arrowButton: UIImageView = {
         let arrowButton = UIImageView()
         arrowButton.image = UIImage(systemName: "arrow.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         arrowButton.autoLayoutOn()
         return arrowButton
     }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,8 +48,6 @@ class PhotoTableViewCell: UITableViewCell {
             stackView.addArrangedSubview(photo)
         }
     }
-    
-    
     
     func setupConstraints(){
         NSLayoutConstraint.activate([
@@ -71,11 +66,6 @@ class PhotoTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
         ])
         
-        //            код не выставляет констрейнты
-        //            stackView.arrangedSubviews.forEach({
-        //            [$0.widthAnchor.constraint(lessThanOrEqualToConstant: (contentView.frame.width - 16) / 4),
-        //            $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
-        //            })
     }
     
     required init?(coder: NSCoder) {
