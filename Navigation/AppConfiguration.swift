@@ -12,6 +12,7 @@ enum AppConfiguration: String, CaseIterable {
     case people = "https://swapi.dev/api/people/8"
     case starships = "https://swapi.dev/api/starships/3"
     case planets = "https://swapi.dev/api/planets/5"
+    case HW1_2 = "https://jsonplaceholder.typicode.com/todos/1"
     
     static func randomURL() -> String {
         AppConfiguration.allCases.randomElement()?.rawValue ?? "Eroor to get the random URL"
