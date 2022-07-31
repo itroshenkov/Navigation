@@ -9,13 +9,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-//        // Задание IOSDT 1.1:
-//        let url = AppConfiguration.randomURL()
-//                NetworkServis.shared.urlSession(stringURL: url)
+        // Задание IOSDT 1.1:
+        let url = AppConfiguration.randomURL()
+        NetworkServis.shared.urlSession(stringURL: url)
         
-//         
-//        // MARK: - HW IOSDT 1.2 task 1
-//                InfoNetworService.shared.urlSession()
         
         
         let inspector = MyLoginFactory.shared.loginFactory()
