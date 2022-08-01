@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>com.itroshenkov.Navigation</string>
 </dict>
 </plist>

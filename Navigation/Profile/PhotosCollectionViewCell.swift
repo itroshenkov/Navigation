@@ -2,7 +2,7 @@
 
 import UIKit
 import iOSIntPackage
-//import StorageService
+import StorageService
 
 class PhotosCollectionViewCell: UICollectionViewCell{
     

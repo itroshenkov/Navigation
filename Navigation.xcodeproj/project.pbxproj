@@ -24,13 +24,10 @@
 		F0636E79288EE734007B4DD6 /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0636E78288EE734007B4DD6 /* PlanetModel.swift */; };
 		F07C879D27F35A5A003564E5 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07C879C27F35A5A003564E5 /* PhotosCollectionViewCell.swift */; };
 		F07C879F27F36788003564E5 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07C879E27F36788003564E5 /* PhotoTableViewCell.swift */; };
-
-		F0C0174228565B4F001674FA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = F0C0174128565B4F001674FA /* iOSIntPackage */; };
-
 		F097060D2857C7D8002A00E3 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = F097060C2857C7D8002A00E3 /* BruteForce.swift */; };
 		F0B20415285CF5CB0051732D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B20414285CF5CB0051732D /* NetworkService.swift */; };
 		F0B20417285CF9470051732D /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B20416285CF9470051732D /* AppConfiguration.swift */; };
- /*feature-iosdt1.1*/ 
+		F0C0174228565B4F001674FA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = F0C0174128565B4F001674FA /* iOSIntPackage */; };
 		F0CCA39B27EF44D300A32D8E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CCA39A27EF44D300A32D8E /* PostTableViewCell.swift */; };
 		F0E589AE27F48AF100687133 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E589AD27F48AF100687133 /* PhotosViewController.swift */; };
 		F0F594AF28984210000857E5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F594AE28984210000857E5 /* StorageService.swift */; };
@@ -89,12 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				F0C0174228565B4F001674FA /* iOSIntPackage in Frameworks */,
-=======
 				F0F594B52898450D000857E5 /* libStorageService.a in Frameworks */,
-				F045CB642843B68A00F990CB /* iOSIntPackage in Frameworks */,
->>>>>>> feature-iosdt1.2
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +225,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = com.itroshenkov.Navigation;
 				TargetAttributes = {
 					F0243C9627CD402A007E99BA = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -449,8 +443,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -464,6 +460,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.itroshenkov.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -475,8 +472,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -490,6 +489,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.itroshenkov.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
