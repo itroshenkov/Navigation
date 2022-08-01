@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Задание IOSDT 1.1:
         let url = AppConfiguration.randomURL()
-                NetworkServis.shared.urlSession(stringURL: url)
+        NetworkServis.shared.urlSession(stringURL: url)
         
         
         

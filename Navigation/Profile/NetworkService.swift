@@ -1,10 +1,10 @@
+////
+////  NetworkService.swift
+////  Navigation
+////
+////  Created by itroshenkov on 17.06.2022.
+////
 //
-//  NetworkService.swift
-//  Navigation
-//
-//  Created by itroshenkov on 17.06.2022.
-//
-
 import Foundation
 
 struct NetworkServis{

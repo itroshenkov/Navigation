@@ -21,6 +21,7 @@
 		F038E45C280F3B74007E4AC4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038E45B280F3B74007E4AC4 /* User.swift */; };
 		F045CB682843C46E00F990CB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F045CB672843C46E00F990CB /* CustomButton.swift */; };
 		F058BE6927CFFCDB00D5148E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F058BE6827CFFCDB00D5148E /* ProfileHeaderView.swift */; };
+		F0636E79288EE734007B4DD6 /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0636E78288EE734007B4DD6 /* PlanetModel.swift */; };
 		F07148EC27DE649D00C022B5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07148EB27DE649D00C022B5 /* Post.swift */; };
 		F07C879D27F35A5A003564E5 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07C879C27F35A5A003564E5 /* PhotosCollectionViewCell.swift */; };
 		F07C879F27F36788003564E5 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07C879E27F36788003564E5 /* PhotoTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		F038E45B280F3B74007E4AC4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F045CB672843C46E00F990CB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F058BE6827CFFCDB00D5148E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F0636E78288EE734007B4DD6 /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
 		F07148EB27DE649D00C022B5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F07C879C27F35A5A003564E5 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F07C879E27F36788003564E5 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				F07148EB27DE649D00C022B5 /* Post.swift */,
 				F02940D427CD4C7500804FEC /* PostViewController.swift */,
 				F02940D827CD4CE100804FEC /* InfoViewController.swift */,
+				F0636E78288EE734007B4DD6 /* PlanetModel.swift */,
 				F0243C9E27CD402A007E99BA /* ViewController.swift */,
 				F0243CA327CD402A007E99BA /* Assets.xcassets */,
 				F0243CA527CD402A007E99BA /* LaunchScreen.storyboard */,
@@ -222,6 +225,7 @@
 				F038E45C280F3B74007E4AC4 /* User.swift in Sources */,
 				F02940D927CD4CE100804FEC /* InfoViewController.swift in Sources */,
 				F058BE6927CFFCDB00D5148E /* ProfileHeaderView.swift in Sources */,
+				F0636E79288EE734007B4DD6 /* PlanetModel.swift in Sources */,
 				F0F929AA281EAD08005EA871 /* Factory.swift in Sources */,
 				F0B20415285CF5CB0051732D /* NetworkService.swift in Sources */,
 				F07C879F27F36788003564E5 /* PhotoTableViewCell.swift in Sources */,
