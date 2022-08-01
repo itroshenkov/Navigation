@@ -1,6 +1,6 @@
 import UIKit
 import iOSIntPackage
-import StorageService
+//import StorageService
 
 
 class PhotoTableViewCell: UITableViewCell {
