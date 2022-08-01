@@ -43,6 +43,7 @@ class PhotoTableViewCell: UITableViewCell {
         contentView.addSubviews(photosLabel,arrowButton,stackView)
         setupConstraints()
         for i in 0...3 {
+            //let photo = UIImageView(image: UIImage(named: photoCollectionArray[i]))
             let photo = UIImageView(image: photoCollectionArray[i])
             photo.autoLayoutOn()
             photo.layer.cornerRadius = 6

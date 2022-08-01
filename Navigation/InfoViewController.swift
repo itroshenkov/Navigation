@@ -30,32 +30,6 @@ class InfoViewController: UIViewController {
         planetLabel.text = ""
         planetLabel.backgroundColor = .green
         
-        
-        // iosdt1.2_Задача 2
-        if let url = URL(string: "https://swapi.dev/api/planets/1") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                if let unwrappedData = data {
-                    do {
-                        
-                        let planet = try JSONDecoder().decode(PlanetModel.self, from: unwrappedData)
-                        
-                        print(planet.orbitalPeriod)
-                        
-                        DispatchQueue.main.async {
-                            planetLabel.text = planet.orbitalPeriod
-                        }
-                        
-                    }
-                    catch let error {
-                        print("⚠️ PLANET ERROR: \(error.localizedDescription)")
-                    }
-                }
-            }
-            task.resume()
-        }
-        
-        
         // iosdt1.2_Задача 1
         if let url = URL(string: "https://jsonplaceholder.typicode.com/todos/1") {
             
@@ -88,6 +62,30 @@ class InfoViewController: UIViewController {
             task.resume()
             
         }
+        
+        // iosdt1.2_Задача 2
+        if let url = URL(string: "https://swapi.dev/api/planets/1") {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                
+                if let unwrappedData = data {
+                    do {
+                        
+                        let planet = try JSONDecoder().decode(PlanetModel.self, from: unwrappedData)
+                        
+                        print(planet.orbitalPeriod)
+                        
+                        DispatchQueue.main.async {
+                            planetLabel.text = planet.orbitalPeriod
+                        }
+                        
+                    }
+                    catch let error {
+                        print("⚠️ PLANET ERROR: \(error.localizedDescription)")
+                    }
+                }
+            }
+            task.resume()
+        }
     }
     
     @objc func tap2(){
@@ -103,7 +101,6 @@ class InfoViewController: UIViewController {
         alertVc.addAction(cencel)
         
         self.present(alertVc, animated: true, completion: nil)
-        
         
     }
 }
