@@ -1,6 +1,6 @@
 
 import UIKit
-
+import StorageService
 
 protocol LoginViewControllerDelegate {
     func checkerprotocol (login: String, psw: String) -> Bool
@@ -161,7 +161,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
-    
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
