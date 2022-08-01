@@ -1,8 +1,6 @@
 
 import UIKit
 
-
-
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileHeaderView"
@@ -103,7 +101,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
-    
     private func showStatusbuttonPressed() {
         guard statusTextField.text?.isEmpty == false else {return}
         statusLabel.text = statusTextChanged(statusTextField)
@@ -139,7 +136,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             })
     }
     
-    
     @objc func closeAnimationAvatar() {
         UIImageView.animate(
             withDuration: 0.3,
@@ -165,8 +161,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
     }
     
-    
-    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(nameLabel,showStatusButton,statusLabel,statusTextField, backView, closeAvatarButton, avatar)
@@ -179,10 +173,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         
     }
-    
-    
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -215,5 +205,4 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusLabel.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16)
         ])
     }
-    
 }

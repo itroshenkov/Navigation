@@ -2,7 +2,6 @@ import UIKit
 import iOSIntPackage
 import StorageService
 
-
 class PhotoTableViewCell: UITableViewCell {
     static let identifire = "PhotoTableViewCell"
     
@@ -37,7 +36,6 @@ class PhotoTableViewCell: UITableViewCell {
         return arrowButton
     }()
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(photosLabel,arrowButton,stackView)
@@ -52,8 +50,6 @@ class PhotoTableViewCell: UITableViewCell {
             stackView.addArrangedSubview(photo)
         }
     }
-    
-    
     
     func setupConstraints(){
         NSLayoutConstraint.activate([
@@ -82,5 +78,4 @@ class PhotoTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

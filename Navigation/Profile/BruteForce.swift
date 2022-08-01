@@ -8,11 +8,9 @@
 import Foundation
 import UIKit
 
-
 class BrutForce {
     
     let passwordToUnlock =  "1234"
-    
     
     func bruteForce(passwordToUnlock: String) -> String {
         let ALLOWED_CHARACTERS: [String] = String().printable.map { String($0) }
@@ -28,7 +26,6 @@ class BrutForce {
         }
         return password
     }
-    
 }
 
 extension String {
@@ -38,7 +35,6 @@ extension String {
     var punctuation: String { return "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" }
     var letters:     String { return lowercase + uppercase }
     var printable:   String { return digits + letters + punctuation }
-    
     
     mutating func replace(at index: Int, with character: Character) {
         var stringArray = Array(self)

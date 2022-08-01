@@ -26,7 +26,6 @@ class FeedViewController: UIViewController {
         return stackView
     }()
     
-    
     var firstButton: UIButton = {
         let firstButton = UIButton()
         firstButton.backgroundColor = .systemBlue
@@ -86,7 +85,6 @@ class FeedViewController: UIViewController {
         return label
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -120,7 +118,6 @@ class FeedViewController: UIViewController {
             name: NSNotification.Name.codeGreen,
             object: nil
         )
-        
     }
     
     func setupConstraints() {
@@ -162,5 +159,4 @@ class FeedViewController: UIViewController {
         navigationController?.pushViewController(postVc, animated: true)
         postVc.postTitle = post
     }
-    
 }

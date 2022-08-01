@@ -1,9 +1,3 @@
-//
-//  CustomButton.swift
-//  Navigation
-//
-//  Created by itroshenkov on 29.05.2022.
-//
 
 import UIKit
 

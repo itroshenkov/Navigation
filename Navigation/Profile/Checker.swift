@@ -1,7 +1,5 @@
 
-
 import Foundation
-
 
 final class Checker{
     static let shared = Checker()

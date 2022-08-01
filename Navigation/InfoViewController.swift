@@ -60,7 +60,6 @@ class InfoViewController: UIViewController {
                 }
             }
             task.resume()
-            
         }
         
         // iosdt1.2_Задача 2
@@ -77,7 +76,6 @@ class InfoViewController: UIViewController {
                         DispatchQueue.main.async {
                             planetLabel.text = planet.orbitalPeriod
                         }
-                        
                     }
                     catch let error {
                         print("⚠️ PLANET ERROR: \(error.localizedDescription)")
@@ -101,7 +99,6 @@ class InfoViewController: UIViewController {
         alertVc.addAction(cencel)
         
         self.present(alertVc, animated: true, completion: nil)
-        
     }
 }
 

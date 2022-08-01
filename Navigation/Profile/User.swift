@@ -37,7 +37,6 @@ class TestUserService: UserService {
     func userIdentifire(nameUser: String) -> User? {
         if  nameUser == user.nameUser{ return user}
         return nil
-        
     }
 }
 

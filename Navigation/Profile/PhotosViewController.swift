@@ -37,7 +37,6 @@ class PhotosViewController: UIViewController{
     var timeCount = 0.0
     var timer: Timer? = nil
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photo Gallery"
@@ -56,38 +55,31 @@ class PhotosViewController: UIViewController{
             images.forEach({self.contentPhotoData.append($0)})
             DispatchQueue.main.async{
                 self.collectionView.reloadData()
-        
             }
         }
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
-    
     /*
-             .Background - 0.47 сек
-             .utility - 0.45 сек
-             .default - 0.45 сек
-             
-    */
-    
+     .Background - 0.47 сек
+     .utility - 0.45 сек
+     .default - 0.45 сек
+     
+     */
     
     //Задание №8
     @objc func updateTimer() {
-            timeCount += 0.01
-            if contentPhotoData.count > 0 {
-                print("Потрачено \(self.timeCount) секунд")
-                timer!.invalidate()
-            }
+        timeCount += 0.01
+        if contentPhotoData.count > 0 {
+            print("Потрачено \(self.timeCount) секунд")
+            timer!.invalidate()
         }
-    
-    
-    
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -114,7 +106,6 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell() }
         cell.setupImage(contentPhotoData[indexPath.item])
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -135,8 +126,6 @@ extension PhotosViewController: ImageLibrarySubscriber {
             }
         })
         collectionView.reloadData()
-        
     }
-    
 }
 

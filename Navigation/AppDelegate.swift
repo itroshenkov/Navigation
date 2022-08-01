@@ -13,8 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = AppConfiguration.randomURL()
         NetworkServis.shared.urlSession(stringURL: url)
         
-        
-        
         let inspector = MyLoginFactory.shared.loginFactory()
         
         let appearance = UINavigationBarAppearance()

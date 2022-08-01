@@ -1,7 +1,6 @@
 
 import UIKit
 
-
 protocol LoginViewControllerDelegate {
     func checkerprotocol (login: String, psw: String) -> Bool
 }
@@ -92,25 +91,22 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         return stackView
     }()
     
-   
-        var hackButton: CustomButton = {
-            let button = CustomButton(
-                title: "Подбор пароля",
-                titleColor: UIColor.white,
-                backColor: UIColor.white,
-                backImage: UIImage(named: "blue_pixel") ?? UIImage()
-            )
-            button.autoLayoutOn()
-            return button
-        }()
-    
+    var hackButton: CustomButton = {
+        let button = CustomButton(
+            title: "Подбор пароля",
+            titleColor: UIColor.white,
+            backColor: UIColor.white,
+            backImage: UIImage(named: "blue_pixel") ?? UIImage()
+        )
+        button.autoLayoutOn()
+        return button
+    }()
     
     var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
-            indicator.autoLayoutOn()
-            return indicator
-        }()
-    
+        indicator.autoLayoutOn()
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,7 +158,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
     
-    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -191,18 +186,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        
+            
             hackButton.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 15),
             hackButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             hackButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             hackButton.heightAnchor.constraint(equalToConstant: 25),
-        
+            
             indicator.topAnchor.constraint(equalTo: hackButton.bottomAnchor, constant: 5),
             indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            indicator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
-//            indicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
-//            indicator.heightAnchor.constraint(equalToConstant: 30)
-        
         ])
     }
     
@@ -233,25 +224,20 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     private func hackPassword() {
         let hack = BrutForce()
         var psw: String = ""
-
+        
         password.placeholder = "hacking..."
         indicator.isHidden = false
         indicator.startAnimating()
         DispatchQueue.global().async {
             psw = hack.bruteForce(passwordToUnlock: "1234")
-
+            
             DispatchQueue.main.sync {
                 self.password.text = psw
                 self.password.isSecureTextEntry = false
                 self.password.placeholder = "Пароль"
                 self.indicator.stopAnimating()
-
-
-
             }
         }
-        
     }
-    
 }
 
