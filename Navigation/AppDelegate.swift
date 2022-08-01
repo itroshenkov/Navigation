@@ -9,6 +9,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
+        // Задание IOSDT 1.1:
+        let url = AppConfiguration.randomURL()
+                NetworkServis.shared.urlSession(stringURL: url)
+        
+        
+        
         let inspector = MyLoginFactory.shared.loginFactory()
         
         let appearance = UINavigationBarAppearance()
