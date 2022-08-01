@@ -1,7 +1,14 @@
 
 import UIKit
+import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
+    
+    
+    private var imageProcessor: ImageProcessor {
+        return ImageProcessor()
+    }
     
     static let identifire = "PostTableViewCell"
     
@@ -88,5 +95,12 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = post.description
         postLikes.text = "Лайк: \(post.likes)"
         postViews.text = "Просмотры: \(post.views)"
+        
+        guard let image = postImage.image else { return }
+        imageProcessor.processImage(sourceImage: image, filter: .noir) { filteredImage in
+                    postImage.image = filteredImage
+                }
     }
+
+    
 }

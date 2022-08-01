@@ -1,6 +1,9 @@
 
 import UIKit
 
+//import StorageService
+
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileHeaderView"
@@ -137,7 +140,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             })
     }
     
-    
     @objc func closeAnimationAvatar() {
         UIImageView.animate(
             withDuration: 0.3,
@@ -175,43 +177,75 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             self.showStatusbuttonPressed()
         }
         
-        
     }
-    
-    
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            
-            avatar.widthAnchor.constraint(equalToConstant: 100),
-            avatar.heightAnchor.constraint(equalToConstant: 100),
-            avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            avatar.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            
-            nameLabel.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            nameLabel.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            
-            showStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            showStatusButton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            showStatusButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusTextField.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-            statusTextField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            statusTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -12),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            
-            statusLabel.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -12),
-            statusLabel.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16)
-        ])
-    }
+    //    **************** Верстка AutoLayout ******************
     
+    //    private func setupConstraints() {
+    //        NSLayoutConstraint.activate([
+    //
+    //            avatar.widthAnchor.constraint(equalToConstant: 100),
+    //            avatar.heightAnchor.constraint(equalToConstant: 100),
+    //            avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+    //            avatar.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+    //
+    //            nameLabel.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
+    //            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+    //            nameLabel.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
+    //
+    //            showStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+    //            showStatusButton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
+    //            showStatusButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16),
+    //            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+    //
+    //            statusTextField.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
+    //            statusTextField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
+    //            statusTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -12),
+    //            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+    //
+    //            statusLabel.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
+    //            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -12),
+    //            statusLabel.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16)
+    //        ])
+    //    }
+    
+    //  ************* Верстка SnapKit ********************
+    
+    private func setupConstraints() {
+        avatar.snp.makeConstraints{ make in
+            make.width.height.equalTo(100)
+            make.leading.top.equalToSuperview().offset(16)
+        }
+        
+        nameLabel.snp.makeConstraints{ make in
+            make.leading.equalTo(avatar.snp.trailing).offset(20)
+            make.top.equalToSuperview().offset(27)
+            make.trailing.equalToSuperview().offset(28)
+        }
+        
+        showStatusButton.snp.makeConstraints{make in
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(avatar.snp.bottom).offset(16)
+            make.height.equalTo(50)
+        }
+        
+        statusTextField.snp.makeConstraints{ make in
+            make.leading.equalTo(avatar.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalTo(showStatusButton.snp.top).offset(-12)
+            make.height.equalTo(40)
+        }
+        
+        statusLabel.snp.makeConstraints{ make in
+            make.leading.equalTo(avatar.snp.trailing).offset(20)
+            make.bottom.equalTo(statusTextField.snp.top).offset(-12)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+    }
 }
+

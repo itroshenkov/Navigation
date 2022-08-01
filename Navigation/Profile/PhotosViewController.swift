@@ -9,6 +9,8 @@ class PhotosViewController: UIViewController{
     
     let facade = ImagePublisherFacade()
     
+    let facade = ImagePublisherFacade()
+    
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -24,6 +26,7 @@ class PhotosViewController: UIViewController{
         return collectionView
     }()
     
+    
     var contentPhotoData: [UIImage] = [] {
         didSet {
             if contentPhotoData.count == photoCollectionArray.count {
@@ -37,6 +40,13 @@ class PhotosViewController: UIViewController{
     var timeCount = 0.0
     var timer: Timer? = nil
     
+    var contentPhotoData: [UIImage] = [] {
+        didSet {
+            if contentPhotoData.count == photoCollectionArray.count {
+                facade.removeSubscription(for: self)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +88,7 @@ class PhotosViewController: UIViewController{
             print("Потрачено \(self.timeCount) секунд")
             timer!.invalidate()
         }
+
     }
     
     
@@ -100,7 +111,27 @@ class PhotosViewController: UIViewController{
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+
     }
+}
+
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: animated)
+}
+
+override func viewWillAppear(_ animated: Bool) {
+    navigationController?.navigationBar.isHidden = false
+}
+
+func setupConstraints() {
+    NSLayoutConstraint.activate([
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    ])
+}
 }
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -113,12 +144,30 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell() }
         cell.setupImage(contentPhotoData[indexPath.item])
+        cell.setupImage(contentPhotoData[indexPath.item])
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: (collectionView.frame.width - 40) / 3, height: (collectionView.frame.width - 40) / 3)
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        
+        images.forEach({ image in
+            if contentPhotoData.contains(where: {image == $0}) {
+                return
+            }
+            else {
+                contentPhotoData.append(image)
+            }
+        })
+        collectionView.reloadData()
+        
     }
 }
 
