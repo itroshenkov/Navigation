@@ -1,6 +1,6 @@
 
 import UIKit
-
+import StorageService
 class ProfileViewController: UIViewController {
     
     // ДЗ №3
@@ -34,7 +34,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad (){
         super.viewDidLoad()
+        
         view.backgroundColor = .white
+        
+        #if DEBUG
+        view.backgroundColor = .green
+        #endif
+        
         
         ProfileViewController.postTable.dataSource = self
         ProfileViewController.postTable.delegate = self
@@ -78,8 +84,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
@@ -90,13 +94,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             navigationController?.pushViewController(PhotosViewController(), animated: true)
         }
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
