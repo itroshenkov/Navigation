@@ -1,8 +1,6 @@
 
 import UIKit
 
-
-
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileHeaderView"

@@ -1,7 +1,7 @@
 
 
 import UIKit
-import StorageService
+//import StorageService
 
 import iOSIntPackage
 
@@ -56,7 +56,7 @@ class PhotosViewController: UIViewController{
             images.forEach({self.contentPhotoData.append($0)})
             DispatchQueue.main.async{
                 self.collectionView.reloadData()
-        
+                
             }
         }
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -64,21 +64,21 @@ class PhotosViewController: UIViewController{
     
     
     /*
-             .Background - 0.47 сек
-             .utility - 0.45 сек
-             .default - 0.45 сек
-             
-    */
+     .Background - 0.47 сек
+     .utility - 0.45 сек
+     .default - 0.45 сек
+     
+     */
     
     
     //Задание №8
     @objc func updateTimer() {
-            timeCount += 0.01
-            if contentPhotoData.count > 0 {
-                print("Потрачено \(self.timeCount) секунд")
-                timer!.invalidate()
-            }
+        timeCount += 0.01
+        if contentPhotoData.count > 0 {
+            print("Потрачено \(self.timeCount) секунд")
+            timer!.invalidate()
         }
+    }
     
     
     

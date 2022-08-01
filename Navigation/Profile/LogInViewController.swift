@@ -1,7 +1,6 @@
 
 import UIKit
 
-
 protocol LoginViewControllerDelegate {
     func checkerprotocol (login: String, psw: String) -> Bool
 }
